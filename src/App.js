@@ -1,42 +1,43 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import logo from './flt.png';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import RCalc from "./RCalc";
 
 const App = () => {
-  const formik = useFormik({
-    initialValues: {
-      R1: 2.4,
-      R2: 4.7,
-    },
-  });
+
   return (
-    <>
-      <h2>Расчет RC фильтра:</h2>
-      <img src={logo} alt="filter" />
+    <Router>
+      <>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/rcfiltercalc">RCalc</Link>
+            </li>
+          </ul>
+        </nav>
 
-      <form>
-        <label htmlFor="R1" >R </label>
-        <input
-          id="R1"
-          name="R1"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.R1}
-        /> kOhm
-      </form>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/rcfiltercalc">
+            <RCalc />
+          </Route>
+          {/* 
+          <Route path="/">
+            <Home />
+          </Route> */}
+        </Switch>
+      </>
 
-      <form>
-        <label htmlFor="R2">C </label>
-        <input
-          id="R2"
-          name="R2"
-          onChange={formik.handleChange}
-          value={formik.values.R2}
-        /> uF
-      </form>
-      <h2>Частота среза будет =  {1000 / (6.2831853 * formik.values.R1 * formik.values.R2)} Гц</h2>
-    </>
-
+    </Router>
   );
 };
 export default App;
