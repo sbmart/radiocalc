@@ -8,10 +8,12 @@ import {
 import RCalc from "./RCalc";
 import Home from "./Home"
 import ResCalc from "./ResCalc"
+import Button from '@material-ui/core/Button';
 
 const App = () => {
 
   return (
+
     <Router>
       <>
         <nav>
@@ -41,6 +43,9 @@ const App = () => {
         </Switch>
       </>
       {/* <h2>this will be footer component</h2> */}
+      <Button variant="contained" color="primary">
+        Welcome Material UI
+      </Button>
     </Router>
   );
 };
